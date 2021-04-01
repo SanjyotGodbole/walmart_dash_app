@@ -5,13 +5,13 @@ import dash_bootstrap_components as dbc
 from dash.dependencies import Input, Output, State
 import plotly.graph_objects as go
 import plotly.express as px
-import data_preprocess as pp
-import app_charts as ap
-# import main
+# import data_preprocess as pp
+# import app_charts as ap
+# # import main
 
-df = pp.preprocess()
+# df = pp.preprocess()
 
-data = ap.CHART_MAKER(df)
+# data = ap.CHART_MAKER(df)
 
 app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 
