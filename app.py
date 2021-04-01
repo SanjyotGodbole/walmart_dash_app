@@ -5,13 +5,12 @@ import dash_bootstrap_components as dbc
 from dash.dependencies import Input, Output, State
 import plotly.graph_objects as go
 import plotly.express as px
-# import data_preprocess as pp
-# import app_charts as ap
-# # import main
+import app_charts as ap
+import data_reader as dr
 
-# df = pp.preprocess()
+data_dict = dr.charts_data()
 
-# data = ap.CHART_MAKER(df)
+chartMaker = ap.CHART_MAKER(data_dict)
 
 app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 
@@ -33,7 +32,13 @@ app.layout = html.Div(
             }
         ),
         html.Div(
-            "Section 11",
+            children=[
+                dcc.Graph(
+                    id = "Section11",
+                    figure = chartMaker.plot_summary11()
+                )
+            ],
+            # "Section 11",
             style={
                 'font-size': '20px',
                 'font-family': 'Ariel',
@@ -95,6 +100,15 @@ app.layout = html.Div(
 
     ]
 )
+
+
+# Creating callback buttons
+# @app.callback(
+#     [
+#         output("Section11")
+#         # input=()
+#     ]
+# )
 
 if __name__ == "__main__":
     app.run_server()
