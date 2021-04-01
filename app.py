@@ -33,12 +33,73 @@ app.layout = html.Div(
         ),
         html.Div(
             children=[
+                html.Button(
+                    'Summary',
+                    id='summary_button',
+                    style={
+                        'font-size': '20px',
+                        'font-family': 'Ariel',
+                        'color': 'black',
+                        'background-color': 'LightGray',
+                        'text-align': 'center',
+                        'display': 'inline-block',
+                        'border-style': 'solid',
+                        'border-color': 'white',
+                        'width': '30%',
+                        'height': '10%'
+                    }
+                )
+            ],
+            
+        ),
+        html.Div(
+            children=[
+                html.Button(
+                    'Store Sales Details',
+                    id='ssd_button',
+                    style={
+                        'font-size': '20px',
+                        'font-family': 'Ariel',
+                        'color': 'black',
+                        'background-color': 'LightGray',
+                        'text-align': 'center',
+                        'display': 'inline-block',
+                        'border-style': 'solid',
+                        'border-color': 'white',
+                        'width': '30%',
+                        'height': '10%'
+                    }
+                )
+            ],
+            
+        ),
+        html.Div(
+            children=[
+                html.Button(
+                    'Event Sales Detail',
+                    id='psd_button',
+                    style={
+                        'font-size': '20px',
+                        'font-family': 'Ariel',
+                        'color': 'black',
+                        'background-color': 'LightGray',
+                        'text-align': 'center',
+                        'display': 'inline-block',
+                        'border-style': 'solid',
+                        'border-color': 'white',
+                        'width': '30%',
+                        'height': '10%'
+                    }
+                )
+            ]    
+        ),
+        html.Div(
+            children=[
                 dcc.Graph(
-                    id = "Section11",
+                    id = "summary11",
                     figure = chartMaker.plot_summary11()
                 )
             ],
-            # "Section 11",
             style={
                 'font-size': '20px',
                 'font-family': 'Ariel',
@@ -53,7 +114,12 @@ app.layout = html.Div(
             }
         ),
         html.Div(
-            "Section 12",
+            children=[
+                dcc.Graph(
+                    id = "summary12",
+                    figure = chartMaker.plot_summary12()
+                )
+            ],
             style={
                 'font-size': '20px',
                 'font-family': 'Ariel',
@@ -68,7 +134,12 @@ app.layout = html.Div(
             }
         ),
         html.Div(
-            "Section 21",
+            children=[
+                dcc.Graph(
+                    id = "summary21",
+                    figure = chartMaker.plot_summary21()
+                )
+            ],
             style={
                 'font-size': '20px',
                 'font-family': 'Ariel',
@@ -83,7 +154,12 @@ app.layout = html.Div(
             }
         ),
         html.Div(
-            "Section 22",
+            children=[
+                dcc.Graph(
+                    id = "summary22",
+                    figure = chartMaker.plot_summary22()
+                )
+            ],
             style={
                 'font-size': '20px',
                 'font-family': 'Ariel',
@@ -96,6 +172,9 @@ app.layout = html.Div(
                 'width': '50%',
                 'height': '40%'
             }
+        ),
+        html.Div(
+            id='output-state'
         ),
 
     ]
@@ -103,12 +182,18 @@ app.layout = html.Div(
 
 
 # Creating callback buttons
-# @app.callback(
-#     [
-#         output("Section11")
-#         # input=()
-#     ]
-# )
+@app.callback(
+    Output("output-state", 'children'),
+    Input('summary_button', 'n_click'),
+    State('summary11', 'figure'),
+    State('summary12', 'figure'),
+    State('summary21', 'figure'),
+    State('summary22', 'figure'),
+)
+
+def update_output(n_clicks,summary11input, summary12input, summary21input, summary22input):
+    return 'figure', 'figure', 'figure', 'figure'
+
 
 if __name__ == "__main__":
     app.run_server()

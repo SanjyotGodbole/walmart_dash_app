@@ -37,136 +37,74 @@ class CHART_MAKER:
                         
         return summary11_fig
 
-    # def plot_summary12(self):
-    #     summary12 = self.df.groupby(
-    #         [
-    #             'state_id',
-    #             'store_id'
-    #         ]
-    #     ).agg(
-    #         {
-    #             'revenue':sum,
-    #             'sale_quantity':sum
-    #         }
-    #     ).reset_index()
+    def plot_summary12(self):
+        summary12 = self.data['summary12']
 
-    #     # display(summary12)
+        summary12_fig = px.bar(
+            summary12,
+            x="store_id", 
+            y=['sale_quantity', "revenue"],  
+            barmode="stack"
+        )
 
-    #     summary12_fig = px.bar(
-    #         summary12,
-    #         x="store_id", 
-    #         y=['sale_quantity', "revenue"],  
-    #         barmode="stack"
-    #     )
-
-    #     summary12_fig.update_layout(
-    #         title="Wallmart's Total Revenue for store in all States"
-    #     )
+        summary12_fig.update_layout(
+            title="Wallmart's Total Revenue for store in all States"
+        )
                             
-    #     # summary12_fig.show()
+        # summary12_fig.show()
 
-    #     # del summary12
+        # del summary12
 
-    #     return summary12_fig
+        return summary12_fig
 
 
-    # def plot_summary21(self):
-    #     summary21 = self.df.groupby(
-    #         [
-    #             'state_id',
-    #             'cat_id',
-    #             'dept_id'
-    #         ]
-    #     ).agg(
-    #         {
-    #             'revenue':sum,
-    #             'sale_quantity':sum
-    #         }
-    #     ).reset_index()
+    def plot_summary21(self):
+        summary21 = self.data['summary21']
 
-    #     # display(summary21)
+        summary21_fig = px.bar(
+            summary21,
+            x="dept_id", 
+            y=["sale_quantity", "revenue"], 
+        #     color="cat_id", 
+            facet_col = 'state_id',
+            barmode="stack"
+        )
 
-    #     summary21_fig = px.bar(
-    #         summary21,
-    #         x="dept_id", 
-    #         y=["sale_quantity", "revenue"], 
-    #     #     color="cat_id", 
-    #         facet_col = 'state_id',
-    #         barmode="stack"
-    #     )
-
-    #     summary21_fig.update_layout(
-    #         title="Wallmart's Total Revenue and Sales for store in all States"
-    #     )
+        summary21_fig.update_layout(
+            title="Wallmart's Total Revenue and Sales for store in all States"
+        )
                         
-    #     # summary21_fig.show()
+        # summary21_fig.show()
 
-    #     # del summary21
+        # del summary21
 
-    #     return summary21_fig
-
-
-    # def plot_summary22(self):
-    #     summary22 = self.df.groupby(
-    #         [
-    #             'state_id',
-    #             'cat_id',
-    #             'item_id'
-    #         ]
-    #     ).agg(
-    #         {
-    #             'revenue':sum,
-    #             'sale_quantity':sum
-    #         }
-    #     )
-
-    #     summary22 = summary22['revenue'].groupby(
-    #         ['state_id','cat_id'], 
-    #         group_keys=False
-    #     ).nlargest(3).reset_index()
-
-    #     # display(summary22)
-
-    #     summary22_fig = px.sunburst(summary22, path=['state_id', 'cat_id', 'item_id'], values='revenue')
-    #     summary22_fig.update_layout(
-    #         title="Wallmart's Top Three selling products in each state and category"
-    #     )
-    #     # summary22_fig.show()
-
-    #     # del summary22
-
-    #     return summary22_fig
-
-    # def display_ssd00(self, st):
-    #     ssd00 = self.df.groupby(
-    #         [
-    #             'state_id',
-    #             'store_id',
-    #             'dept_id',
-    #             'item_id'
-    #         ]
-    #     ).agg(
-    #         {
-    #             'revenue':sum,
-    #             'sale_quantity':sum
-    #         }
-    #     )
-
-    #     best_store = ssd00['revenue'].groupby(
-    #         ['state_id'],
-    #         group_keys=False
-    #     ).nlargest(1).reset_index()
+        return summary21_fig
 
 
-    #     worst_store = ssd00['revenue'].groupby(
-    #         ['state_id'],
-    #         group_keys=False
-    #     ).nsmallest(1).reset_index()
+    def plot_summary22(self):
+        summary22 = self.data['summary22']
 
-    #     best_of_state = best_store[best_store['state_id']==st]
-    #     worst_of_state = worst_store[worst_store['state_id']==st]
+        summary22_fig = px.sunburst(summary22, path=['state_id', 'cat_id', 'item_id'], values='revenue')
+        summary22_fig.update_layout(
+            title="Wallmart's Top Three selling products in each state and category"
+        )
+        # summary22_fig.show()
 
-    #     return best_of_state, worst_of_state
+        # del summary22
+
+        return summary22_fig
+
+    def display_ssd00(self, st):
+        ssd00 = self.data['ssd00']
+
+        best_store = self.data['ssd00_01']
+
+        worst_store = self.data['ssd00_02']
+
+        best_of_state = best_store[best_store['state_id']==st]
+        worst_of_state = worst_store[worst_store['state_id']==st]
+
+        return best_of_state, worst_of_state
 
 
     # def plot_ssd11(self, st):
