@@ -1,0 +1,10 @@
+state_id,store_id,Religious_event,sale_quantity
+CA,CA_3,OrthodoxEaster,40751
+CA,CA_3,Purim End,37354
+CA,CA_3,Pesach End,35145
+TX,TX_2,OrthodoxEaster,28097
+TX,TX_2,Purim End,23965
+TX,TX_2,Pesach End,23198
+WI,WI_3,OrthodoxEaster,22892
+WI,WI_3,Pesach End,22821
+WI,WI_3,Purim End,21966
