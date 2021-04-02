@@ -183,10 +183,61 @@ class CHART_MAKER:
 
         return ssd12_fig
 
-    # # def plot_ssd21(self, st):
-        
+    def plot_ssd21(self, st='CA'):
+        ssd21 = self.data['ssd21']
 
-    # # def plot_ssd22(self), st):
+        worst_performing_store = self.data[
+            'state_worst_stores'
+        ][
+            self.data['state_worst_stores'].state_id==st
+        ][
+            'store_id'
+        ]
+
+        ssd21_fig = px.bar(
+            ssd21,
+            x='dept_id', 
+            y="revenue",
+        )
+
+        ssd21_fig.update_layout(
+            title="Revenue of top 3 selling department of "
+            +
+            self.stateDict[st]
+            +
+            "'s worst \nperforming store '"
+            +
+            worst_performing_store[0]+ "'"
+        )
+                        
+        # ssd21_fig.show()
+
+        # del ssd21
+
+        return ssd21_fig
+ 
+
+    def plot_ssd22(self, st='CA'):
+        ssd22 = self.data['ssd22']
+
+        ssd22_fig = px.bar(
+            ssd22[ssd22.state_id==st],
+            x='event', 
+            y="revenue",
+            facet_col='store_id'
+        )
+
+        ssd22_fig.update_layout(
+            title=self.stateDict[st]
+            +
+            "'s top 5 revenue generating events by store"
+        )
+
+        ssd22_fig.show()    
+
+        return ssd22_fig
+
+
     # # def psd(self):
     # # def plot_psd11(self):
     # # def plot_psd12(self):

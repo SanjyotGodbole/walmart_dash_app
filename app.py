@@ -20,7 +20,7 @@ server = app.server
 app.layout = html.Div(
     children=[
         html.Div(
-            "Wallmart Data Analysis",
+            "Walmart Data Analysis",
             style={
                 'font-size': '40px',
                 'font-family': 'Ariel',
@@ -162,7 +162,92 @@ app.layout = html.Div(
                                 'height': '40%'
                             }
                         ),
+                        html.Div(
+                            children=[
+                                dcc.Graph(
+                                    id = "ssd21",
+                                    figure = chartMaker.plot_ssd21()
+                                )
+                            ],
+                            style={
+                                'font-size': '20px',
+                                'font-family': 'Ariel',
+                                'color': 'black',
+                                'background-color': 'LightGray',
+                                'text-align': 'center',
+                                'display': 'inline-block',
+                                'border-style': 'solid',
+                                'border-color': 'white',
+                                'width': '50%',
+                                'height': '40%'
+                            }
+                        ),
+                        html.Div(
+                            children=[
+                                dcc.Graph(
+                                    id = "ssd22",
+                                    figure = chartMaker.plot_ssd22()
+                                )
+                            ],
+                            style={
+                                'font-size': '20px',
+                                'font-family': 'Ariel',
+                                'color': 'black',
+                                'background-color': 'LightGray',
+                                'text-align': 'center',
+                                'display': 'inline-block',
+                                'border-style': 'solid',
+                                'border-color': 'white',
+                                'width': '50%',
+                                'height': '40%'
+                            }
+                        ),                    
+                    ]
+                ),
+                dcc.Tab(
+                    label='Event Sales Details',
+                    children=[
                         # html.Div(
+                        #     children=[
+                        #         dcc.Graph(
+                        #             id = "psd11",
+                        #             figure = chartMaker.plot_psd11()
+                        #         )
+                        #     ],
+                        #     style={
+                        #         'font-size': '20px',
+                        #         'font-family': 'Ariel',
+                        #         'color': 'black',
+                        #         'background-color': 'LightGray',
+                        #         'text-align': 'center',
+                        #         'display': 'inline-block',
+                        #         'border-style': 'solid',
+                        #         'border-color': 'white',
+                        #         'width': '50%',
+                        #         'height': '40%'
+                        #     }
+                        # ),
+                        # html.Div(
+                        #     children=[
+                        #         dcc.Graph(
+                        #             id = "psd12",
+                        #             figure = chartMaker.plot_psd12()
+                        #         )
+                        #     ],
+                        #     style={
+                        #         'font-size': '20px',
+                        #         'font-family': 'Ariel',
+                        #         'color': 'black',
+                        #         'background-color': 'LightGray',
+                        #         'text-align': 'center',
+                        #         'display': 'inline-block',
+                        #         'border-style': 'solid',
+                        #         'border-color': 'white',
+                        #         'width': '50%',
+                        #         'height': '40%'
+                        #     }
+                        # ),
+                        # # html.Div(
                         #     children=[
                         #         dcc.Graph(
                         #             id = "ssd21",
@@ -203,7 +288,8 @@ app.layout = html.Div(
                         #     }
                         # ),                    
                     ]
-                )    
+                )
+    
             ])
         )
     ]
