@@ -207,7 +207,7 @@ class CHART_MAKER:
             +
             "'s worst \nperforming store '"
             +
-            worst_performing_store[0]+ "'"
+            worst_performing_store.unique()[0]+ "'"
         )
                         
         # ssd21_fig.show()
@@ -218,7 +218,11 @@ class CHART_MAKER:
  
 
     def plot_ssd22(self, st='CA'):
-        ssd22 = self.data['ssd22']
+        all_events = self.data['all_events']
+        ssd22 = all_events[all_events.state_id == st].groupby(
+            ['state_id','store_id','event'],
+        #     group_keys=False
+        ).agg({'revenue':sum}).nlargest(5, columns='revenue').reset_index()
 
         ssd22_fig = px.bar(
             ssd22[ssd22.state_id==st],

@@ -124,6 +124,32 @@ app.layout = html.Div(
                     children=[
                         html.Div(
                             children=[
+                                dcc.Dropdown(
+                                    id='ssd_state_dropdown',
+                                    options=[
+                                        {'label':'California','value':'CA'},
+                                        {'label':'Texas','value':'TX'},
+                                        {'label':'Wisconsin','value':'WI'}
+                                    ],
+                                    value='CA' 
+                                ),
+                                html.Div(id='st-dd-output-container')
+                            ],
+                            style={
+                                'font-size': '20px',
+                                'font-family': 'Ariel',
+                                'color': 'black',
+                                'background-color': 'white',
+                                'text-align': 'center',
+                                # 'display': 'inline-block',
+                                'border-style': 'solid',
+                                'border-color': 'white',
+                                'width': '25%',
+                                # 'height': '40%'
+                            }
+                        ),
+                        html.Div(
+                            children=[
                                 dcc.Graph(
                                     id = "ssd11",
                                     figure = chartMaker.plot_ssd11()
@@ -294,168 +320,47 @@ app.layout = html.Div(
         )
     ]
 )
-#         html.Div(
-#             children=[
-#                 html.Button(
-#                     'Summary',
-#                     id='summary_button',
-#                     style={
-#                         'font-size': '20px',
-#                         'font-family': 'Ariel',
-#                         'color': 'black',
-#                         'background-color': 'LightGray',
-#                         'text-align': 'center',
-#                         'display': 'inline-block',
-#                         'border-style': 'solid',
-#                         'border-color': 'white',
-#                         'width': '30%',
-#                         'height': '10%'
-#                     }
-#                 )
-#             ],
-            
-#         ),
-#         html.Div(
-#             children=[
-#                 html.Button(
-#                     'Store Sales Details',
-#                     id='ssd_button',
-#                     style={
-#                         'font-size': '20px',
-#                         'font-family': 'Ariel',
-#                         'color': 'black',
-#                         'background-color': 'LightGray',
-#                         'text-align': 'center',
-#                         'display': 'inline-block',
-#                         'border-style': 'solid',
-#                         'border-color': 'white',
-#                         'width': '30%',
-#                         'height': '10%'
-#                     }
-#                 )
-#             ],
-            
-#         ),
-#         html.Div(
-#             children=[
-#                 html.Button(
-#                     'Event Sales Detail',
-#                     id='psd_button',
-#                     style={
-#                         'font-size': '20px',
-#                         'font-family': 'Ariel',
-#                         'color': 'black',
-#                         'background-color': 'LightGray',
-#                         'text-align': 'center',
-#                         'display': 'inline-block',
-#                         'border-style': 'solid',
-#                         'border-color': 'white',
-#                         'width': '30%',
-#                         'height': '10%'
-#                     }
-#                 )
-#             ]    
-#         ),
-#         html.Div(
-#             children=[
-#                 dcc.Graph(
-#                     id = "summary11",
-#                     figure = chartMaker.plot_summary11()
-#                 )
-#             ],
-#             style={
-#                 'font-size': '20px',
-#                 'font-family': 'Ariel',
-#                 'color': 'black',
-#                 'background-color': 'LightGray',
-#                 'text-align': 'center',
-#                 'display': 'inline-block',
-#                 'border-style': 'solid',
-#                 'border-color': 'white',
-#                 'width': '50%',
-#                 'height': '40%'
-#             }
-#         ),
-#         html.Div(
-#             children=[
-#                 dcc.Graph(
-#                     id = "summary12",
-#                     figure = chartMaker.plot_summary12()
-#                 )
-#             ],
-#             style={
-#                 'font-size': '20px',
-#                 'font-family': 'Ariel',
-#                 'color': 'black',
-#                 'background-color': 'LightGray',
-#                 'text-align': 'center',
-#                 'display': 'inline-block',
-#                 'border-style': 'solid',
-#                 'border-color': 'white',
-#                 'width': '50%',
-#                 'height': '40%'
-#             }
-#         ),
-#         html.Div(
-#             children=[
-#                 dcc.Graph(
-#                     id = "summary21",
-#                     figure = chartMaker.plot_summary21()
-#                 )
-#             ],
-#             style={
-#                 'font-size': '20px',
-#                 'font-family': 'Ariel',
-#                 'color': 'black',
-#                 'background-color': 'LightGray',
-#                 'text-align': 'center',
-#                 'display': 'inline-block',
-#                 'border-style': 'solid',
-#                 'border-color': 'white',
-#                 'width': '50%',
-#                 'height': '40%'
-#             }
-#         ),
-#         html.Div(
-#             children=[
-#                 dcc.Graph(
-#                     id = "summary22",
-#                     figure = chartMaker.plot_summary22()
-#                 )
-#             ],
-#             style={
-#                 'font-size': '20px',
-#                 'font-family': 'Ariel',
-#                 'color': 'black',
-#                 'background-color': 'LightGray',
-#                 'text-align': 'center',
-#                 'display': 'inline-block',
-#                 'border-style': 'solid',
-#                 'border-color': 'white',
-#                 'width': '50%',
-#                 'height': '40%'
-#             }
-#         ),
-#         html.Div(
-#             id='output-state'
-#         ),
-
-#     ]
-# )
 
 
 # Creating callback buttons
 @app.callback(
-    Output("output-state", 'children'),
-    Input('summary_button', 'n_click'),
-    State('summary11', 'figure'),
-    State('summary12', 'figure'),
-    State('summary21', 'figure'),
-    State('summary22', 'figure'),
+    Output('st-dd-output-container', 'children'),
+    [Input('ssd_state_dropdown', 'value')]
 )
+def update_output(value):
+    return 'showing results for "{}"'.format(value)
 
-def update_output(n_clicks,summary11input, summary12input, summary21input, summary22input):
-    return 'figure', 'figure', 'figure', 'figure'
+@app.callback(
+    Output('ssd11', 'figure'),
+    [Input('ssd_state_dropdown', 'value')]
+)
+def update_output(value):
+    figure_ssd11 = chartMaker.plot_ssd11(value)
+    return figure_ssd11
+
+@app.callback(
+    Output('ssd12', 'figure'),
+    [Input('ssd_state_dropdown', 'value')]
+)
+def update_output(value):
+    figure_ssd12 = chartMaker.plot_ssd12(value)
+    return figure_ssd12
+
+@app.callback(
+    Output('ssd21', 'figure'),
+    [Input('ssd_state_dropdown', 'value')]
+)
+def update_output(value):
+    figure_ssd21 = chartMaker.plot_ssd21(value)
+    return figure_ssd21
+
+@app.callback(
+    Output('ssd22', 'figure'),
+    [Input('ssd_state_dropdown', 'value')]
+)
+def update_output(value):
+    figure_ssd22 = chartMaker.plot_ssd22(value)
+    return figure_ssd22
 
 
 if __name__ == "__main__":
