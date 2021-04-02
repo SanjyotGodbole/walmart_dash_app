@@ -235,6 +235,32 @@ app.layout = html.Div(
                     children=[
                         html.Div(
                             children=[
+                                dcc.Dropdown(
+                                    id='esd_state_dropdown',
+                                    options=[
+                                        {'label':'California','value':'CA'},
+                                        {'label':'Texas','value':'TX'},
+                                        {'label':'Wisconsin','value':'WI'}
+                                    ],
+                                    value='CA' 
+                                ),
+                                html.Div(id='esd-st-dd-output-container')
+                            ],
+                            style={
+                                'font-size': '20px',
+                                'font-family': 'Ariel',
+                                'color': 'black',
+                                'background-color': 'white',
+                                'text-align': 'center',
+                                # 'display': 'inline-block',
+                                'border-style': 'solid',
+                                'border-color': 'white',
+                                'width': '25%',
+                                # 'height': '40%'
+                            }
+                        ),
+                        html.Div(
+                            children=[
                                 dcc.Graph(
                                     id = "esd11",
                                     figure = chartMaker.plot_esd('Religious_event')
@@ -361,6 +387,45 @@ def update_output(value):
 def update_output(value):
     figure_ssd22 = chartMaker.plot_ssd22(value)
     return figure_ssd22
+
+@app.callback(
+    Output('esd-st-dd-output-container', 'children'),
+    [Input('esd_state_dropdown', 'value')]
+)
+def update_output(value):
+    return 'showing results for "{}"'.format(value)
+
+@app.callback(
+    Output('esd11', 'figure'),
+    [Input('esd_state_dropdown', 'value')]
+)
+def update_output(value):
+    figure_esd11 = chartMaker.plot_esd('Religious_event', st=value)
+    return figure_esd11
+
+@app.callback(
+    Output('esd12', 'figure'),
+    [Input('esd_state_dropdown', 'value')]
+)
+def update_output(value):
+    figure_esd12 = chartMaker.plot_esd('Cultural_event', st=value)
+    return figure_esd12
+
+@app.callback(
+    Output('esd21', 'figure'),
+    [Input('esd_state_dropdown', 'value')]
+)
+def update_output(value):
+    figure_esd21 = chartMaker.plot_esd('National_event', st=value)
+    return figure_esd21
+
+@app.callback(
+    Output('esd22', 'figure'),
+    [Input('esd_state_dropdown', 'value')]
+)
+def update_output(value):
+    figure_esd22 = chartMaker.plot_esd('Sporting_event', st=value)
+    return figure_esd22
 
 
 if __name__ == "__main__":

@@ -194,6 +194,8 @@ class CHART_MAKER:
             'store_id'
         ]
 
+        ssd21 = ssd21[ssd21.store_id==worst_performing_store.unique()[0]]
+
         ssd21_fig = px.bar(
             ssd21,
             x='dept_id', 
