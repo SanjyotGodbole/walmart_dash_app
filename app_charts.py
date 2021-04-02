@@ -107,105 +107,81 @@ class CHART_MAKER:
         return best_of_state, worst_of_state
 
 
-    # def plot_ssd11(self, st):
-    #     ssd11 = self.df.groupby(
-    #         ['state_id','cat_id','dept_id',]
-    #     ).agg(
-    #         {
-    #             'revenue':sum,
-    #             'sale_quantity':sum
-    #         }
-    #     )
+    def plot_ssd11(self, st='CA'):
+        ssd11 = self.data['ssd11']
 
-    #     ssd11_01 = ssd11['revenue'].groupby(
-    #         "state_id", 
-    #         group_keys=False
-    #     ).nlargest(3).reset_index()
+        ssd11_01 = self.data['ssd11_01']
 
-    #     ssd11_02 = ssd11['sale_quantity'].groupby(
-    #         "state_id", 
-    #         group_keys=False
-    #     ).nlargest(3).reset_index()
+        ssd11_02 = self.data['ssd11_02']
 
-    #     # display(ssd11)
+        # display(ssd11)
 
 
 
-    #     ssd11_fig = make_subplots(
-    #         rows=1, 
-    #         cols=2, 
-    #         shared_yaxes=True
-    #     )
+        ssd11_fig = make_subplots(
+            rows=1, 
+            cols=2, 
+            shared_yaxes=True
+        )
 
-    #     ssd11_fig.add_trace(
-    #         go.Bar(
-    #             name = 'Revenue',
-    #             x = ssd11_01[ssd11_01.state_id==st]['dept_id'],
-    #             y = ssd11_01[ssd11_01.state_id==st]['revenue'],
-    #         ),
-    #         1, 1
-    #     )
-    #     ssd11_fig.add_trace(
-    #         go.Bar(
-    #             name = 'Sale',
-    #             x = ssd11_02[ssd11_02.state_id==st]['dept_id'],
-    #             y = ssd11_02[ssd11_02.state_id==st]['sale_quantity'],
-    #         ),
-    #         1, 2
-    #     )
+        ssd11_fig.add_trace(
+            go.Bar(
+                name = 'Revenue',
+                x = ssd11_01[ssd11_01.state_id==st]['dept_id'],
+                y = ssd11_01[ssd11_01.state_id==st]['revenue'],
+            ),
+            1, 1
+        )
+        ssd11_fig.add_trace(
+            go.Bar(
+                name = 'Sale',
+                x = ssd11_02[ssd11_02.state_id==st]['dept_id'],
+                y = ssd11_02[ssd11_02.state_id==st]['sale_quantity'],
+            ),
+            1, 2
+        )
 
-    #     ssd11_fig.update_layout(
-    #         title_text=stateDict[st] 
-    #         + 
-    #         "'s top 3 selling departments in revenue and volumn"
-    #     )
-    #     # ssd11_fig.show()
+        ssd11_fig.update_layout(
+            title_text=self.stateDict[st] 
+            + 
+            "'s top 3 selling departments in revenue and volumn"
+        )
+        # ssd11_fig.show()
 
-    #     self.top_3_dept_by_revenue = list(ssd11_01[ssd11_01.state_id==st]['dept_id'])
+        self.top_3_dept_by_revenue = list(ssd11_01[ssd11_01.state_id==st]['dept_id'])
         
 
-    #     # del ssd11, ssd11_01, ssd11_02
+        # del ssd11, ssd11_01, ssd11_02
 
-    #     return ssd11_fig
+        return ssd11_fig
 
 
-    # def plot_ssd12(self, st):
-    #     ssd12 = self.df.groupby(
-    #         ['state_id', 'store_id', 'dept_id']
-    #     ).agg(
-    #         {
-    #             'revenue':sum,
-    #             'sale_quantity':sum
-    #         }
-    #     )['revenue'].groupby(
-    #         ['state_id', 'dept_id'],
-    #         group_keys=False
-    #     ).nlargest(1).reset_index()
-    #     # ssd12
+    def plot_ssd12(self, st='CA'):
+        ssd12 = self.data['ssd12']
 
-    #     ssd12_cond = (ssd12.state_id==st) & (ssd12.dept_id.isin(self.top_3_dept_by_revenue))
+        ssd12_cond = (ssd12.state_id==st) & (ssd12.dept_id.isin(self.top_3_dept_by_revenue))
 
-    #     ssd12_fig = px.bar(
-    #         ssd12[ssd12_cond],
-    #         x='store_id', 
-    #         y="revenue",
-    #         facet_col='dept_id'
+        ssd12_fig = px.bar(
+            ssd12[ssd12_cond],
+            x='store_id', 
+            y="revenue",
+            facet_col='dept_id'
 
-    #     )
+        )
 
-    #     ssd12_fig.update_layout(
-    #         title="Revenue of "
-    #         +
-    #         stateDict[st]
-    #         +
-    #         "'s top 3 selling department's best performing stores"
-    #     )
+        ssd12_fig.update_layout(
+            title="Revenue of "
+            +
+            self.stateDict[st]
+            +
+            "'s top 3 selling department's best performing stores"
+        )
                         
-    #     # ssd12_fig.show()
+        # ssd12_fig.show()
 
-    #     # del ssd12
+        # del ssd12
 
-    #     return ssd12_fig
+        return ssd12_fig
 
     # # def plot_ssd21(self, st):
         

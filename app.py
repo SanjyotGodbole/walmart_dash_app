@@ -32,153 +32,330 @@ app.layout = html.Div(
             }
         ),
         html.Div(
-            children=[
-                html.Button(
-                    'Summary',
-                    id='summary_button',
-                    style={
-                        'font-size': '20px',
-                        'font-family': 'Ariel',
-                        'color': 'black',
-                        'background-color': 'LightGray',
-                        'text-align': 'center',
-                        'display': 'inline-block',
-                        'border-style': 'solid',
-                        'border-color': 'white',
-                        'width': '30%',
-                        'height': '10%'
-                    }
-                )
-            ],
-            
-        ),
-        html.Div(
-            children=[
-                html.Button(
-                    'Store Sales Details',
-                    id='ssd_button',
-                    style={
-                        'font-size': '20px',
-                        'font-family': 'Ariel',
-                        'color': 'black',
-                        'background-color': 'LightGray',
-                        'text-align': 'center',
-                        'display': 'inline-block',
-                        'border-style': 'solid',
-                        'border-color': 'white',
-                        'width': '30%',
-                        'height': '10%'
-                    }
-                )
-            ],
-            
-        ),
-        html.Div(
-            children=[
-                html.Button(
-                    'Event Sales Detail',
-                    id='psd_button',
-                    style={
-                        'font-size': '20px',
-                        'font-family': 'Ariel',
-                        'color': 'black',
-                        'background-color': 'LightGray',
-                        'text-align': 'center',
-                        'display': 'inline-block',
-                        'border-style': 'solid',
-                        'border-color': 'white',
-                        'width': '30%',
-                        'height': '10%'
-                    }
-                )
-            ]    
-        ),
-        html.Div(
-            children=[
-                dcc.Graph(
-                    id = "summary11",
-                    figure = chartMaker.plot_summary11()
-                )
-            ],
-            style={
-                'font-size': '20px',
-                'font-family': 'Ariel',
-                'color': 'black',
-                'background-color': 'LightGray',
-                'text-align': 'center',
-                'display': 'inline-block',
-                'border-style': 'solid',
-                'border-color': 'white',
-                'width': '50%',
-                'height': '40%'
-            }
-        ),
-        html.Div(
-            children=[
-                dcc.Graph(
-                    id = "summary12",
-                    figure = chartMaker.plot_summary12()
-                )
-            ],
-            style={
-                'font-size': '20px',
-                'font-family': 'Ariel',
-                'color': 'black',
-                'background-color': 'LightGray',
-                'text-align': 'center',
-                'display': 'inline-block',
-                'border-style': 'solid',
-                'border-color': 'white',
-                'width': '50%',
-                'height': '40%'
-            }
-        ),
-        html.Div(
-            children=[
-                dcc.Graph(
-                    id = "summary21",
-                    figure = chartMaker.plot_summary21()
-                )
-            ],
-            style={
-                'font-size': '20px',
-                'font-family': 'Ariel',
-                'color': 'black',
-                'background-color': 'LightGray',
-                'text-align': 'center',
-                'display': 'inline-block',
-                'border-style': 'solid',
-                'border-color': 'white',
-                'width': '50%',
-                'height': '40%'
-            }
-        ),
-        html.Div(
-            children=[
-                dcc.Graph(
-                    id = "summary22",
-                    figure = chartMaker.plot_summary22()
-                )
-            ],
-            style={
-                'font-size': '20px',
-                'font-family': 'Ariel',
-                'color': 'black',
-                'background-color': 'LightGray',
-                'text-align': 'center',
-                'display': 'inline-block',
-                'border-style': 'solid',
-                'border-color': 'white',
-                'width': '50%',
-                'height': '40%'
-            }
-        ),
-        html.Div(
-            id='output-state'
-        ),
-
+            dcc.Tabs([
+                dcc.Tab(
+                    label='Summary',
+                    children=[
+                        html.Div(
+                            children=[
+                                dcc.Graph(
+                                    id = "summary11",
+                                    figure = chartMaker.plot_summary11()
+                                )
+                            ],
+                            style={
+                                'font-size': '20px',
+                                'font-family': 'Ariel',
+                                'color': 'black',
+                                'background-color': 'LightGray',
+                                'text-align': 'center',
+                                'display': 'inline-block',
+                                'border-style': 'solid',
+                                'border-color': 'white',
+                                'width': '50%',
+                                'height': '40%'
+                            }
+                        ),
+                        html.Div(
+                            children=[
+                                dcc.Graph(
+                                    id = "summary12",
+                                    figure = chartMaker.plot_summary12()
+                                )
+                            ],
+                            style={
+                                'font-size': '20px',
+                                'font-family': 'Ariel',
+                                'color': 'black',
+                                'background-color': 'LightGray',
+                                'text-align': 'center',
+                                'display': 'inline-block',
+                                'border-style': 'solid',
+                                'border-color': 'white',
+                                'width': '50%',
+                                'height': '40%'
+                            }
+                        ),
+                        html.Div(
+                            children=[
+                                dcc.Graph(
+                                    id = "summary21",
+                                    figure = chartMaker.plot_summary21()
+                                )
+                            ],
+                            style={
+                                'font-size': '20px',
+                                'font-family': 'Ariel',
+                                'color': 'black',
+                                'background-color': 'LightGray',
+                                'text-align': 'center',
+                                'display': 'inline-block',
+                                'border-style': 'solid',
+                                'border-color': 'white',
+                                'width': '50%',
+                                'height': '40%'
+                            }
+                        ),
+                        html.Div(
+                            children=[
+                                dcc.Graph(
+                                    id = "summary22",
+                                    figure = chartMaker.plot_summary22()
+                                )
+                            ],
+                            style={
+                                'font-size': '20px',
+                                'font-family': 'Ariel',
+                                'color': 'black',
+                                'background-color': 'LightGray',
+                                'text-align': 'center',
+                                'display': 'inline-block',
+                                'border-style': 'solid',
+                                'border-color': 'white',
+                                'width': '50%',
+                                'height': '40%'
+                            }
+                        ),                    
+                        
+                    ]
+                ),
+                dcc.Tab(
+                    label='Store Sales Details',
+                    children=[
+                        html.Div(
+                            children=[
+                                dcc.Graph(
+                                    id = "ssd11",
+                                    figure = chartMaker.plot_ssd11()
+                                )
+                            ],
+                            style={
+                                'font-size': '20px',
+                                'font-family': 'Ariel',
+                                'color': 'black',
+                                'background-color': 'LightGray',
+                                'text-align': 'center',
+                                'display': 'inline-block',
+                                'border-style': 'solid',
+                                'border-color': 'white',
+                                'width': '50%',
+                                'height': '40%'
+                            }
+                        ),
+                        html.Div(
+                            children=[
+                                dcc.Graph(
+                                    id = "ssd12",
+                                    figure = chartMaker.plot_ssd12()
+                                )
+                            ],
+                            style={
+                                'font-size': '20px',
+                                'font-family': 'Ariel',
+                                'color': 'black',
+                                'background-color': 'LightGray',
+                                'text-align': 'center',
+                                'display': 'inline-block',
+                                'border-style': 'solid',
+                                'border-color': 'white',
+                                'width': '50%',
+                                'height': '40%'
+                            }
+                        ),
+                        # html.Div(
+                        #     children=[
+                        #         dcc.Graph(
+                        #             id = "ssd21",
+                        #             figure = chartMaker.plot_ssd21()
+                        #         )
+                        #     ],
+                        #     style={
+                        #         'font-size': '20px',
+                        #         'font-family': 'Ariel',
+                        #         'color': 'black',
+                        #         'background-color': 'LightGray',
+                        #         'text-align': 'center',
+                        #         'display': 'inline-block',
+                        #         'border-style': 'solid',
+                        #         'border-color': 'white',
+                        #         'width': '50%',
+                        #         'height': '40%'
+                        #     }
+                        # ),
+                        # html.Div(
+                        #     children=[
+                        #         dcc.Graph(
+                        #             id = "ssd22",
+                        #             figure = chartMaker.plot_ssd22()
+                        #         )
+                        #     ],
+                        #     style={
+                        #         'font-size': '20px',
+                        #         'font-family': 'Ariel',
+                        #         'color': 'black',
+                        #         'background-color': 'LightGray',
+                        #         'text-align': 'center',
+                        #         'display': 'inline-block',
+                        #         'border-style': 'solid',
+                        #         'border-color': 'white',
+                        #         'width': '50%',
+                        #         'height': '40%'
+                        #     }
+                        # ),                    
+                    ]
+                )    
+            ])
+        )
     ]
 )
+#         html.Div(
+#             children=[
+#                 html.Button(
+#                     'Summary',
+#                     id='summary_button',
+#                     style={
+#                         'font-size': '20px',
+#                         'font-family': 'Ariel',
+#                         'color': 'black',
+#                         'background-color': 'LightGray',
+#                         'text-align': 'center',
+#                         'display': 'inline-block',
+#                         'border-style': 'solid',
+#                         'border-color': 'white',
+#                         'width': '30%',
+#                         'height': '10%'
+#                     }
+#                 )
+#             ],
+            
+#         ),
+#         html.Div(
+#             children=[
+#                 html.Button(
+#                     'Store Sales Details',
+#                     id='ssd_button',
+#                     style={
+#                         'font-size': '20px',
+#                         'font-family': 'Ariel',
+#                         'color': 'black',
+#                         'background-color': 'LightGray',
+#                         'text-align': 'center',
+#                         'display': 'inline-block',
+#                         'border-style': 'solid',
+#                         'border-color': 'white',
+#                         'width': '30%',
+#                         'height': '10%'
+#                     }
+#                 )
+#             ],
+            
+#         ),
+#         html.Div(
+#             children=[
+#                 html.Button(
+#                     'Event Sales Detail',
+#                     id='psd_button',
+#                     style={
+#                         'font-size': '20px',
+#                         'font-family': 'Ariel',
+#                         'color': 'black',
+#                         'background-color': 'LightGray',
+#                         'text-align': 'center',
+#                         'display': 'inline-block',
+#                         'border-style': 'solid',
+#                         'border-color': 'white',
+#                         'width': '30%',
+#                         'height': '10%'
+#                     }
+#                 )
+#             ]    
+#         ),
+#         html.Div(
+#             children=[
+#                 dcc.Graph(
+#                     id = "summary11",
+#                     figure = chartMaker.plot_summary11()
+#                 )
+#             ],
+#             style={
+#                 'font-size': '20px',
+#                 'font-family': 'Ariel',
+#                 'color': 'black',
+#                 'background-color': 'LightGray',
+#                 'text-align': 'center',
+#                 'display': 'inline-block',
+#                 'border-style': 'solid',
+#                 'border-color': 'white',
+#                 'width': '50%',
+#                 'height': '40%'
+#             }
+#         ),
+#         html.Div(
+#             children=[
+#                 dcc.Graph(
+#                     id = "summary12",
+#                     figure = chartMaker.plot_summary12()
+#                 )
+#             ],
+#             style={
+#                 'font-size': '20px',
+#                 'font-family': 'Ariel',
+#                 'color': 'black',
+#                 'background-color': 'LightGray',
+#                 'text-align': 'center',
+#                 'display': 'inline-block',
+#                 'border-style': 'solid',
+#                 'border-color': 'white',
+#                 'width': '50%',
+#                 'height': '40%'
+#             }
+#         ),
+#         html.Div(
+#             children=[
+#                 dcc.Graph(
+#                     id = "summary21",
+#                     figure = chartMaker.plot_summary21()
+#                 )
+#             ],
+#             style={
+#                 'font-size': '20px',
+#                 'font-family': 'Ariel',
+#                 'color': 'black',
+#                 'background-color': 'LightGray',
+#                 'text-align': 'center',
+#                 'display': 'inline-block',
+#                 'border-style': 'solid',
+#                 'border-color': 'white',
+#                 'width': '50%',
+#                 'height': '40%'
+#             }
+#         ),
+#         html.Div(
+#             children=[
+#                 dcc.Graph(
+#                     id = "summary22",
+#                     figure = chartMaker.plot_summary22()
+#                 )
+#             ],
+#             style={
+#                 'font-size': '20px',
+#                 'font-family': 'Ariel',
+#                 'color': 'black',
+#                 'background-color': 'LightGray',
+#                 'text-align': 'center',
+#                 'display': 'inline-block',
+#                 'border-style': 'solid',
+#                 'border-color': 'white',
+#                 'width': '50%',
+#                 'height': '40%'
+#             }
+#         ),
+#         html.Div(
+#             id='output-state'
+#         ),
+
+#     ]
+# )
 
 
 # Creating callback buttons
