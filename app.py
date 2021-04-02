@@ -207,86 +207,86 @@ app.layout = html.Div(
                 dcc.Tab(
                     label='Event Sales Details',
                     children=[
-                        # html.Div(
-                        #     children=[
-                        #         dcc.Graph(
-                        #             id = "psd11",
-                        #             figure = chartMaker.plot_psd11()
-                        #         )
-                        #     ],
-                        #     style={
-                        #         'font-size': '20px',
-                        #         'font-family': 'Ariel',
-                        #         'color': 'black',
-                        #         'background-color': 'LightGray',
-                        #         'text-align': 'center',
-                        #         'display': 'inline-block',
-                        #         'border-style': 'solid',
-                        #         'border-color': 'white',
-                        #         'width': '50%',
-                        #         'height': '40%'
-                        #     }
-                        # ),
-                        # html.Div(
-                        #     children=[
-                        #         dcc.Graph(
-                        #             id = "psd12",
-                        #             figure = chartMaker.plot_psd12()
-                        #         )
-                        #     ],
-                        #     style={
-                        #         'font-size': '20px',
-                        #         'font-family': 'Ariel',
-                        #         'color': 'black',
-                        #         'background-color': 'LightGray',
-                        #         'text-align': 'center',
-                        #         'display': 'inline-block',
-                        #         'border-style': 'solid',
-                        #         'border-color': 'white',
-                        #         'width': '50%',
-                        #         'height': '40%'
-                        #     }
-                        # ),
-                        # # html.Div(
-                        #     children=[
-                        #         dcc.Graph(
-                        #             id = "ssd21",
-                        #             figure = chartMaker.plot_ssd21()
-                        #         )
-                        #     ],
-                        #     style={
-                        #         'font-size': '20px',
-                        #         'font-family': 'Ariel',
-                        #         'color': 'black',
-                        #         'background-color': 'LightGray',
-                        #         'text-align': 'center',
-                        #         'display': 'inline-block',
-                        #         'border-style': 'solid',
-                        #         'border-color': 'white',
-                        #         'width': '50%',
-                        #         'height': '40%'
-                        #     }
-                        # ),
-                        # html.Div(
-                        #     children=[
-                        #         dcc.Graph(
-                        #             id = "ssd22",
-                        #             figure = chartMaker.plot_ssd22()
-                        #         )
-                        #     ],
-                        #     style={
-                        #         'font-size': '20px',
-                        #         'font-family': 'Ariel',
-                        #         'color': 'black',
-                        #         'background-color': 'LightGray',
-                        #         'text-align': 'center',
-                        #         'display': 'inline-block',
-                        #         'border-style': 'solid',
-                        #         'border-color': 'white',
-                        #         'width': '50%',
-                        #         'height': '40%'
-                        #     }
-                        # ),                    
+                        html.Div(
+                            children=[
+                                dcc.Graph(
+                                    id = "esd11",
+                                    figure = chartMaker.plot_esd('Religious_event')
+                                )
+                            ],
+                            style={
+                                'font-size': '20px',
+                                'font-family': 'Ariel',
+                                'color': 'black',
+                                'background-color': 'LightGray',
+                                'text-align': 'center',
+                                'display': 'inline-block',
+                                'border-style': 'solid',
+                                'border-color': 'white',
+                                'width': '50%',
+                                'height': '40%'
+                            }
+                        ),
+                        html.Div(
+                            children=[
+                                dcc.Graph(
+                                    id = "esd12",
+                                    figure = chartMaker.plot_esd('Cultural_event')
+                                )
+                            ],
+                            style={
+                                'font-size': '20px',
+                                'font-family': 'Ariel',
+                                'color': 'black',
+                                'background-color': 'LightGray',
+                                'text-align': 'center',
+                                'display': 'inline-block',
+                                'border-style': 'solid',
+                                'border-color': 'white',
+                                'width': '50%',
+                                'height': '40%'
+                            }
+                        ),
+                        html.Div(
+                            children=[
+                                dcc.Graph(
+                                    id = "esd21",
+                                    figure = chartMaker.plot_esd('National_event')
+                                )
+                            ],
+                            style={
+                                'font-size': '20px',
+                                'font-family': 'Ariel',
+                                'color': 'black',
+                                'background-color': 'LightGray',
+                                'text-align': 'center',
+                                'display': 'inline-block',
+                                'border-style': 'solid',
+                                'border-color': 'white',
+                                'width': '50%',
+                                'height': '40%'
+                            }
+                        ),
+                        html.Div(
+                            children=[
+                                dcc.Graph(
+                                    id = "esd22",
+                                    figure = chartMaker.plot_esd('Sporting_event')
+                                )
+                            ],
+                            style={
+                                'font-size': '20px',
+                                'font-family': 'Ariel',
+                                'color': 'black',
+                                'background-color': 'LightGray',
+                                'text-align': 'center',
+                                'display': 'inline-block',
+                                'border-style': 'solid',
+                                'border-color': 'white',
+                                'width': '50%',
+                                'height': '40%'
+                            }
+                        ),                    
                     ]
                 )
     

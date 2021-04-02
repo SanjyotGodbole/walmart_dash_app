@@ -233,11 +233,44 @@ class CHART_MAKER:
             "'s top 5 revenue generating events by store"
         )
 
-        ssd22_fig.show()    
+        # ssd22_fig.show()    
 
         return ssd22_fig
 
+    def plot_esd(self, event_type, st='CA'):
 
+        df1 = self.data['df1'+event_type]   
+        df2 = self.data['df2'+event_type] 
+        
+        esd_fig = go.Figure(
+            data=[
+                go.Bar(
+                    name = 'Best Store '+ df1[df1.state_id==st]['store_id'].unique()[0],
+                    x = df1[df1.state_id==st][event_type],
+                    y = df1[df1.state_id==st]['revenue'],
+                ),
+                go.Bar(
+                    name = 'Worst Store '+ df2[df2.state_id==st]['store_id'].unique()[0],
+                    x = df2[df2.state_id==st][event_type],
+                    y = df2[df2.state_id==st]['revenue']
+                )
+            ],
+        )
+            
+
+
+        esd_fig.update_layout(
+            title=self.stateDict[st]
+            +
+            "'s top 3 stores that have high sales during "
+            +
+            event_type
+        )
+        
+        # esd_fig.show()  
+
+        return esd_fig 
+    
     # # def psd(self):
     # # def plot_psd11(self):
     # # def plot_psd12(self):
