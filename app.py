@@ -16,6 +16,7 @@ app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 server = app.server
 
+
 ### defining the HTML component 
 app.layout = html.Div(
     children=[

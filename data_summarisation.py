@@ -96,17 +96,17 @@ ssd11 = sales_master_final.groupby(
         'revenue':sum,
         'sale_quantity':sum
     }
-)
+).reset_index()
 
-ssd11_01 = ssd11['revenue'].groupby(
-    "state_id", 
-    group_keys=False
-).nlargest(3).reset_index()
+ssd11_01 = ssd11[ssd11["state_id"]==st].groupby(
+    ["state_id", 'dept_id'],
+).agg({'revenue': 'sum'})['revenue'].nlargest(3).reset_index()
 
-ssd11_02 = ssd11['sale_quantity'].groupby(
-    "state_id", 
-    group_keys=False
-).nlargest(3).reset_index()
+ssd11_02 = ssd11[ssd11["state_id"]==st].groupby(
+    ["state_id", 'dept_id'],
+).agg({'sale_quantity': 'sum'})['sale_quantity'].nlargest(3).reset_index()
+
+top_3_dept_by_revenue = list(ssd11_01['dept_id'])
 
 ssd11.to_csv('ssd11.csv',index=False)
 ssd11_01.to_csv('ssd11_01.csv',index=False)

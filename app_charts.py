@@ -33,7 +33,7 @@ class CHART_MAKER:
             ],
         )
 
-        summary11_fig.update_layout(title="Wallmart's Total Revenue and Total Sales by States")
+        summary11_fig.update_layout(title="Walmart's Total Revenue and Total Sales by States")
                         
         return summary11_fig
 
@@ -48,7 +48,7 @@ class CHART_MAKER:
         )
 
         summary12_fig.update_layout(
-            title="Wallmart's Total Revenue for store in all States"
+            title="Walmart's Total Revenue for all Stores"
         )
                             
         # summary12_fig.show()
@@ -71,7 +71,7 @@ class CHART_MAKER:
         )
 
         summary21_fig.update_layout(
-            title="Wallmart's Total Revenue and Sales for store in all States"
+            title="Walmart's Total Revenue and Sales by Department for Stores in all States"
         )
                         
         # summary21_fig.show()
@@ -86,7 +86,7 @@ class CHART_MAKER:
 
         summary22_fig = px.sunburst(summary22, path=['state_id', 'cat_id', 'item_id'], values='revenue')
         summary22_fig.update_layout(
-            title="Wallmart's Top Three selling products in each state and category"
+            title="Walmart's Top Three Selling Products (Items) in each State and Category"
         )
         # summary22_fig.show()
 
@@ -94,7 +94,7 @@ class CHART_MAKER:
 
         return summary22_fig
 
-    def display_ssd00(self, st):
+    def display_ssd00(self, st='CA'):
         ssd00 = self.data['ssd00']
 
         best_store = self.data['ssd00_01']
@@ -109,10 +109,10 @@ class CHART_MAKER:
 
     def plot_ssd11(self, st='CA'):
         ssd11 = self.data['ssd11']
+        
+        ssd11_01 = self.data['ssd11_01_'+st]
 
-        ssd11_01 = self.data['ssd11_01']
-
-        ssd11_02 = self.data['ssd11_02']
+        ssd11_02 = self.data['ssd11_02_'+st]
 
         # display(ssd11)
 
@@ -127,16 +127,16 @@ class CHART_MAKER:
         ssd11_fig.add_trace(
             go.Bar(
                 name = 'Revenue',
-                x = ssd11_01[ssd11_01.state_id==st]['dept_id'],
-                y = ssd11_01[ssd11_01.state_id==st]['revenue'],
+                x = ssd11_01['dept_id'],
+                y = ssd11_01['revenue'],
             ),
             1, 1
         )
         ssd11_fig.add_trace(
             go.Bar(
                 name = 'Sale',
-                x = ssd11_02[ssd11_02.state_id==st]['dept_id'],
-                y = ssd11_02[ssd11_02.state_id==st]['sale_quantity'],
+                x = ssd11_02['dept_id'],
+                y = ssd11_02['sale_quantity'],
             ),
             1, 2
         )
@@ -144,11 +144,11 @@ class CHART_MAKER:
         ssd11_fig.update_layout(
             title_text=self.stateDict[st] 
             + 
-            "'s top 3 selling departments in revenue and volumn"
+            "'s Top Three Selling Departments by Revenue and Volume"
         )
         # ssd11_fig.show()
 
-        self.top_3_dept_by_revenue = list(ssd11_01[ssd11_01.state_id==st]['dept_id'])
+        self.top_3_dept_by_revenue = list(ssd11_01['dept_id'])
         
 
         # del ssd11, ssd11_01, ssd11_02
@@ -174,7 +174,7 @@ class CHART_MAKER:
             +
             self.stateDict[st]
             +
-            "'s top 3 selling department's best performing stores"
+            "'s Top Three Selling Department's Best Performing Stores"
         )
                         
         # ssd12_fig.show()
@@ -203,11 +203,11 @@ class CHART_MAKER:
         )
 
         ssd21_fig.update_layout(
-            title="Revenue of top 3 selling department of "
+            title="Revenue of Top Three Selling Department of "
             +
             self.stateDict[st]
             +
-            "'s worst \nperforming store '"
+            "'s Worst \nPerforming Store '"
             +
             worst_performing_store.unique()[0]+ "'"
         )
@@ -236,7 +236,7 @@ class CHART_MAKER:
         ssd22_fig.update_layout(
             title=self.stateDict[st]
             +
-            "'s top 5 revenue generating events by store"
+            "'s Top Five Revenue Generating Events by Store"
         )
 
         # ssd22_fig.show()    
@@ -268,7 +268,7 @@ class CHART_MAKER:
         esd_fig.update_layout(
             title=self.stateDict[st]
             +
-            "'s top 3 stores that have high sales during "
+            "'s Highest and Lowest Revenue Stores During "
             +
             event_type
         )
