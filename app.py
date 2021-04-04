@@ -366,7 +366,7 @@ def update_output(value):
     return figure_ssd11
 
 @app.callback(
-    Output('ssd12', 'figure'),
+    Output('ssd12', 'figure'), 
     [Input('ssd_state_dropdown', 'value')]
 )
 def update_output(value):

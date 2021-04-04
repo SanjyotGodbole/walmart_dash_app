@@ -148,7 +148,7 @@ class CHART_MAKER:
         )
         # ssd11_fig.show()
 
-        self.top_3_dept_by_revenue = list(ssd11_01['dept_id'])
+        # self.top_3_dept_by_revenue = list(ssd11_01['dept_id'])
         
 
         # del ssd11, ssd11_01, ssd11_02
@@ -159,8 +159,10 @@ class CHART_MAKER:
     def plot_ssd12(self, st='CA'):
         ssd12 = self.data['ssd12']
 
-        ssd12_cond = (ssd12.state_id==st) & (ssd12.dept_id.isin(self.top_3_dept_by_revenue))
+        self.top_3_dept_by_revenue = list(self.data['ssd11_01_'+st]['dept_id']) 
 
+        ssd12_cond = (ssd12.state_id==st) & (ssd12.dept_id.isin(self.top_3_dept_by_revenue))
+        
         ssd12_fig = px.bar(
             ssd12[ssd12_cond],
             x='store_id', 
